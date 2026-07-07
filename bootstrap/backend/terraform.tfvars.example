@@ -1,0 +1,9 @@
+aws_region = "us-east-1"
+
+project_name = "cloudfront-secure-static-website"
+
+environment = "dev"
+
+state_bucket_name = "ashyt-tf-state"
+
+lock_table_name = "ashyt-tf-lock"
