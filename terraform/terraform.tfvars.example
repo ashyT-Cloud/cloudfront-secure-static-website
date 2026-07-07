@@ -1,0 +1,10 @@
+aws_region    = "us-east-1"
+
+project_name  = "cloudfront-secure-static-website"
+
+environment   = "dev"
+
+bucket_name   = "ashyt-cloudfront-secure-static-website"
+
+force_destroy = false
+
