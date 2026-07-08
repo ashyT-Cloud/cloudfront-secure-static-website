@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Secure Static Website on AWS</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- Navigation -->
+    <!-- ========================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                Secure<span>Site</span>
+
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="#home">Home</a></li>
+
+                <li><a href="#overview">Overview</a></li>
+
+                <li><a href="#architecture">Architecture</a></li>
+
+                <li><a href="#security">Security</a></li>
+
+                <li><a href="#resources">Resources</a></li>
+
+                <li><a href="#workflow">Workflow</a></li>
+
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <!-- ========================= -->
+    <!-- Hero -->
+    <!-- ========================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="hero-tag">
+
+                Terraform • Amazon S3 • CloudFront • DevOps
+
+            </p>
+
+            <h1>
+
+                Secure Static Website
+
+                <br>
+
+                Hosting on AWS
+
+            </h1>
+
+            <p class="hero-description">
+
+                A production-inspired DevOps project demonstrating secure static website hosting using Terraform,
+                Amazon S3, CloudFront Origin Access Control (OAC), and modern AWS security best practices.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#architecture" class="btn-primary">
+
+                    View Architecture
+
+                </a>
+
+                <a href="https://github.com/ashyT-Cloud/cloudfront-secure-static-website"
+                    target="_blank"
+                    class="btn-secondary">
+
+                    GitHub Repository
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- Overview -->
+    <!-- ========================= -->
+
+    <section class="section" id="overview">
+
+        <div class="container">
+
+            <h2>
+
+                Project Overview
+
+            </h2>
+
+            <p class="section-intro">
+
+                Traditional static website hosting often exposes Amazon S3 buckets directly to the internet.
+                This project demonstrates how to securely host static content by keeping the S3 bucket completely
+                private while serving files through Amazon CloudFront using Origin Access Control (OAC).
+
+            </p>
+
+            <div class="overview-grid">
+
+                <div class="card">
+
+                    <h3>Infrastructure as Code</h3>
+
+                    <p>
+
+                        All AWS infrastructure is provisioned using Terraform,
+                        making deployments repeatable and version controlled.
+
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Security First</h3>
+
+                    <p>
+
+                        Public access is blocked at the bucket level.
+                        CloudFront is the only service allowed to access website objects.
+
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Production Ready</h3>
+
+                    <p>
+
+                        Remote Terraform backend, state locking,
+                        encryption, versioning, and secure access patterns.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+        <!-- ========================= -->
+    <!-- Architecture -->
+    <!-- ========================= -->
+
+    <section class="section dark-section" id="architecture">
+
+        <div class="container">
+
+            <h2>AWS Architecture</h2>
+
+            <p class="section-intro">
+
+                The infrastructure follows AWS security best practices.
+                Amazon S3 remains private while CloudFront securely delivers
+                website content through Origin Access Control.
+
+            </p>
+
+            <div class="architecture-box">
+
+<pre>
+
+                 Internet Users
+                        │
+                        ▼
+            Amazon CloudFront CDN
+                        │
+         Origin Access Control (OAC)
+                        │
+                        ▼
+        Amazon S3 (Private Bucket)
+                        ▲
+                        │
+                 Terraform IaC
+                        │
+          Remote State (S3 Backend)
+                        │
+                DynamoDB Lock Table
+
+</pre>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- Security -->
+    <!-- ========================= -->
+
+    <section class="section" id="security">
+
+        <div class="container">
+
+            <h2>Security Features</h2>
+
+            <p class="section-intro">
+
+                Security is the primary objective of this project.
+                Every component has been configured following AWS
+                recommendations.
+
+            </p>
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+
+                    <div class="icon">🔒</div>
+
+                    <h3>Private S3 Bucket</h3>
+
+                    <p>
+
+                        Website content is never publicly accessible.
+
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="icon">🛡️</div>
+
+                    <h3>Block Public Access</h3>
+
+                    <p>
+
+                        All four Block Public Access settings are enabled.
+
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="icon">🔑</div>
+
+                    <h3>Origin Access Control</h3>
+
+                    <p>
+
+                        Only CloudFront can securely retrieve objects
+                        from Amazon S3.
+
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="icon">🔐</div>
+
+                    <h3>Server Side Encryption</h3>
+
+                    <p>
+
+                        AES-256 encryption protects stored website objects.
+
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="icon">📦</div>
+
+                    <h3>Bucket Versioning</h3>
+
+                    <p>
+
+                        Protects against accidental overwrites and deletions.
+
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="icon">🌍</div>
+
+                    <h3>HTTPS Delivery</h3>
+
+                    <p>
+
+                        CloudFront redirects HTTP requests to HTTPS.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- Infrastructure -->
+    <!-- ========================= -->
+
+    <section class="section dark-section" id="resources">
+
+        <div class="container">
+
+            <h2>Infrastructure Components</h2>
+
+            <p class="section-intro">
+
+                The complete infrastructure is provisioned using Terraform.
+
+            </p>
+
+            <div class="resources-grid">
+
+                <div class="resource-card">
+
+                    <h3>Terraform</h3>
+
+                    <p>
+
+                        Infrastructure provisioning and lifecycle management.
+
+                    </p>
+
+                </div>
+
+                <div class="resource-card">
+
+                    <h3>Amazon S3</h3>
+
+                    <p>
+
+                        Secure storage for website content.
+
+                    </p>
+
+                </div>
+
+                <div class="resource-card">
+
+                    <h3>CloudFront</h3>
+
+                    <p>
+
+                        Global CDN for secure and high-performance delivery.
+
+                    </p>
+
+                </div>
+
+                <div class="resource-card">
+
+                    <h3>DynamoDB</h3>
+
+                    <p>
+
+                        Terraform state locking to prevent concurrent updates.
+
+                    </p>
+
+                </div>
+
+                <div class="resource-card">
+
+                    <h3>S3 Backend</h3>
+
+                    <p>
+
+                        Remote Terraform state management.
+
+                    </p>
+
+                </div>
+
+                <div class="resource-card">
+
+                    <h3>IAM Role</h3>
+
+                    <p>
+
+                        Secure authentication for the operations workstation.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- Workflow -->
+    <!-- ========================= -->
+
+    <section class="section" id="workflow">
+
+        <div class="container">
+
+            <h2>Deployment Workflow</h2>
+
+            <p class="section-intro">
+
+                Every infrastructure change follows a repeatable GitOps-inspired workflow.
+
+            </p>
+
+            <div class="workflow">
+
+                <div class="workflow-step">
+
+                    Developer
+
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="workflow-step">
+
+                    GitHub Repository
+
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="workflow-step">
+
+                    Terraform
+
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="workflow-step">
+
+                    AWS Infrastructure
+
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="workflow-step">
+
+                    CloudFront CDN
+
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="workflow-step">
+
+                    End Users
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+        <!-- ========================= -->
+    <!-- Project Statistics -->
+    <!-- ========================= -->
+
+    <section class="section dark-section" id="statistics">
+
+        <div class="container">
+
+            <h2>Project Statistics</h2>
+
+            <p class="section-intro">
+
+                A quick overview of the technologies and infrastructure used in this project.
+
+            </p>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <h3>8+</h3>
+
+                    <p>AWS Resources</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>100%</h3>
+
+                    <p>Infrastructure as Code</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>0</h3>
+
+                    <p>Public S3 Objects</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <h3>Remote</h3>
+
+                    <p>Terraform State</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- Technology Stack -->
+    <!-- ========================= -->
+
+    <section class="section" id="tech-stack">
+
+        <div class="container">
+
+            <h2>Technology Stack</h2>
+
+            <p class="section-intro">
+
+                The project combines Infrastructure as Code, AWS services,
+                version control, and modern web technologies.
+
+            </p>
+
+            <div class="tech-grid">
+
+                <div class="tech-card">Terraform</div>
+
+                <div class="tech-card">Amazon S3</div>
+
+                <div class="tech-card">CloudFront</div>
+
+                <div class="tech-card">DynamoDB</div>
+
+                <div class="tech-card">IAM</div>
+
+                <div class="tech-card">GitHub</div>
+
+                <div class="tech-card">HTML5</div>
+
+                <div class="tech-card">CSS3</div>
+
+                <div class="tech-card">JavaScript</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- Future Improvements -->
+    <!-- ========================= -->
+
+    <section class="section dark-section">
+
+        <div class="container">
+
+            <h2>Future Improvements</h2>
+
+            <div class="future-grid">
+
+                <div class="future-card">
+
+                    ✅ GitHub Actions CI/CD
+
+                </div>
+
+                <div class="future-card">
+
+                    ✅ Custom Domain with Route53
+
+                </div>
+
+                <div class="future-card">
+
+                    ✅ AWS Certificate Manager (ACM)
+
+                </div>
+
+                <div class="future-card">
+
+                    ✅ AWS WAF Integration
+
+                </div>
+
+                <div class="future-card">
+
+                    ✅ Monitoring with CloudWatch
+
+                </div>
+
+                <div class="future-card">
+
+                    ✅ Cost Optimization Dashboard
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- Contact -->
+    <!-- ========================= -->
+
+    <section class="section" id="contact">
+
+        <div class="container">
+
+            <h2>Connect With Me</h2>
+
+            <p class="section-intro">
+
+                Interested in cloud computing, DevOps, or AWS?
+                Feel free to connect.
+
+            </p>
+
+            <div class="contact-buttons">
+
+                <a href="https://github.com/ashyT-Cloud"
+                    target="_blank"
+                    class="btn-primary">
+
+                    GitHub
+
+                </a>
+
+                <a href="https://www.linkedin.com/in/ashish-thakur-132b00214/"
+                    target="_blank"
+                    class="btn-secondary">
+
+                    LinkedIn
+
+                </a>
+
+                <a href="mailto:aashishthakur14609@gmail.com"
+                    target="_blank"
+                    class="btn-secondary">
+
+                   Email
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- Footer -->
+    <!-- ========================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+
+                © 2026 Ashish Thakur • Secure Static Website Hosting on AWS
+
+            </p>
+
+            <p>
+
+                Built with Terraform, Amazon S3, CloudFront, and DevOps Best Practices.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
