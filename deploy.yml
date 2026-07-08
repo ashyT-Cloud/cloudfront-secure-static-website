@@ -1,0 +1,33 @@
+name: Deploy Static Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Validate/index.html
+        run: |
+          test -f website/index.html
+
+      - name: Validate CSS
+        run: |
+          test -f website/css/style.css
+
+      - name: Validate JavaScript
+        run: |
+          test -f website/js/script.js
+
+      - name: Terraform Format Check
+        uses: hashicorp/setup-terraform@v3
+
+      - run: terraform fmt -check terraform
