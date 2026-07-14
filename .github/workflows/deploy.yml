@@ -1,4 +1,4 @@
-name: Deploy Static Website
+name: Deploy Secure Static Website
 
 on:
   push:
@@ -6,28 +6,49 @@ on:
       - main
 
 jobs:
-  validate:
-
+  deploy:
     runs-on: ubuntu-latest
 
-    steps:
+    defaults:
+      run:
+        working-directory: terraform
 
+    steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Validate/index.html
-        run: |
-          test -f website/index.html
-
-      - name: Validate CSS
-        run: |
-          test -f website/css/style.css
-
-      - name: Validate JavaScript
-        run: |
-          test -f website/js/script.js
-
-      - name: Terraform Format Check
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - run: terraform fmt -check terraform
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init
+        run: terraform init -backend=false
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Validate Website Files
+        working-directory: .
+        run: |
+          test -f website/index.html
+          test -f website/css/style.css
+          test -f website/js/script.js
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Upload Website to S3
+        run: |
+          aws s3 sync ../website/ s3://${{ secrets.S3_BUCKET }} --delete
+
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
