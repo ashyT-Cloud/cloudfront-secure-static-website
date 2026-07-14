@@ -256,6 +256,13 @@ This project strengthened my practical understanding of AWS cloud services, Infr
 
 ---
 
+## 🌐 Deployment Status
+
+The infrastructure for this project has been successfully deployed and validated on AWS using Terraform.
+
+To minimize AWS costs, the infrastructure may be destroyed when not actively being demonstrated. The repository includes architecture diagrams, deployment screenshots, and Infrastructure as Code to fully document the implementation.
+
+
 # 💡 What I Learned
 
 Building this project gave me hands-on experience with:
