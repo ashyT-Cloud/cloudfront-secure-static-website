@@ -212,40 +212,32 @@ The CI/CD pipeline validates Terraform, uploads the website to Amazon S3, and in
 
 ---
 
-## Architecture Diagram
+## 📊 Project Highlights
 
-![Architecture](docs/screenshots/architecture.png)
+- Infrastructure as Code with Terraform
+- Secure Static Website Hosting on AWS
+- Private Amazon S3 Bucket
+- Amazon CloudFront with Origin Access Control (OAC)
+- Remote Terraform Backend (S3 + DynamoDB)
+- Automated CI/CD with GitHub Actions
 
 ---
 
-![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws)
+# 🧩 Key Challenges & Solutions
 
-![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform)
+| Challenge | Solution |
+|-----------|----------|
+| AWS account verification blocked CloudFront creation | Waited for AWS account verification and resumed deployment |
+| CloudFront returned Access Denied | Uploaded website content to the private S3 bucket and verified Origin Access Control (OAC) |
+| Workflow file placed in the wrong directory | Moved the workflow to `.github/workflows` |
+| Git commits made on the wrong branch | Reviewed the branch history and completed the release work on `main` |
+| Terraform backend warning | Kept the current implementation and documented the newer `use_lockfile` approach for future enhancement |
 
-![GitHub Actions](https://img.shields.io/badge/GitHub-Actions-2088FF?logo=githubactions)
-
-![HTML5](https://img.shields.io/badge/HTML5-orange?logo=html5)
-
-![CSS3](https://img.shields.io/badge/CSS3-blue?logo=css3)
-
-![JavaScript](https://img.shields.io/badge/JavaScript-yellow?logo=javascript)
-
+---
 
 # 📚 Learning Outcomes
 
-This project demonstrates practical experience with:
-
-- Infrastructure as Code
-- Terraform
-- AWS Cloud Services
-- Static Website Hosting
-- CloudFront
-- Origin Access Control
-- CI/CD Pipelines
-- GitHub Actions
-- Remote Terraform Backend
-- Git Branching Strategy
-- Cloud Security Best Practices
+This project strengthened my practical understanding of AWS cloud services, Infrastructure as Code, secure static website hosting, CI/CD automation, Git workflows, and production-inspired DevOps practices.
 
 ---
 
@@ -264,11 +256,27 @@ This project demonstrates practical experience with:
 
 ---
 
+# 💡 What I Learned
+
+Building this project gave me hands-on experience with:
+
+- Designing secure AWS architectures using Amazon S3 and CloudFront
+- Implementing Infrastructure as Code using Terraform
+- Managing remote Terraform state with Amazon S3 and DynamoDB
+- Building CI/CD pipelines using GitHub Actions
+- Troubleshooting real-world deployment issues
+- Applying Git branching strategies and version control best practices
+
+
+
 # 👨‍💻 Author
 
 **Ashish Thakur**
 
-DevOps | Cloud Engineer | AWS | Terraform | Docker | Kubernetes
+Aspiring DevOps & Cloud Engineer
+
+Skills:
+AWS • Terraform • Docker • Kubernetes • Git • GitHub Actions • Linux
 
 GitHub: https://github.com/ashyT-Cloud
 
